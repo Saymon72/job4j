@@ -5,37 +5,41 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class CalculatorTest  {
-		@Test
-    public void whenAddOnePlusOneThenTwo()  {
+public class CalculatorTest {
+    @Test
+    public void whenAddOnePlusOneThenTwo() {
         Calculator calc = new Calculator();
         calc.add(1D, 1D);
         double result = calc.getResult();
         double expected = 2D;
         assertThat(result, is(expected));
     }
-		@Test
-    public void whenDiv2on2Then1()  {
+
+    @Test
+    public void whenDiv2on2Then1() {
         Calculator calc = new Calculator();
         calc.add(2D, 2D);
         double result = calc.getResult();
         double expected = 1D;
         assertThat(result, is(expected));
     }
-		@Test
-    public void whenMultiple2on2Then4()  {
+
+    @Test
+    public void whenMultiple2on2Then4() {
         Calculator calc = new Calculator();
         calc.add(2D, 2D);
         double result = calc.getResult();
         double expected = 4D;
         assertThat(result, is(expected));
     }
-		@Test
-    public void whenSubtract2from3Then1()  {
+
+    @Test
+    public void whenSubtract2from3Then1() {
         Calculator calc = new Calculator();
         calc.add(2D, 3D);
         double result = calc.getResult();
         double expected = 1D;
         assertThat(result, is(expected));
-	
+
+    }
 }
