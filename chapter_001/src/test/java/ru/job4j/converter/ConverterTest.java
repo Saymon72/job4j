@@ -5,6 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class ConverterTest {
+
     @Test
     public void when66RubleToDollarThen1() {
         Converter converter = new Converter();
@@ -13,7 +14,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void when70RubleToEuroThen1() {
+    public void when75RubleToEuroThen1() {
         Converter converter = new Converter();
         int result = converter.rubleToEuro(75);
         assertThat(result, is(1));
