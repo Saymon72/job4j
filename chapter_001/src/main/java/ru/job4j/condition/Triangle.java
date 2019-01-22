@@ -33,13 +33,11 @@ public class Triangle {
      * @return Вернуть прощадь, если треугольник существует или -1, если треугольника нет.
      */
     public double area() {
-        double rsl = -1; // мы устанавливаем значение -1, так как может быть что треугольника нет. Это значение говорит о том. что треугольника нет.
+        double rsl = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         double p = this.period(ab, ac, bc);
-        // написать формулу для расчета площади треугольника.
-        // Для извлечение квадратного корня надо использовать метод Math.sqrt()
         if (this.exist(ab, ac, bc)) {
             rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
@@ -53,12 +51,8 @@ public class Triangle {
      * @param ab Длина от точки a b.
      * @param ac Длина от точки a c.
      * @param bc Длина от точки b c.
-          */
+     */
     public boolean exist(double ab, double ac, double bc) {
-        if (this.exist(ab, ac, bc)) {
-            return true;
-        } else {
-            return false;
-        }
+        return ((ab + bc) > ac) && ((ab + bc) > ac) && ((ab + bc) > ac);
     }
 }
