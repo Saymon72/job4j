@@ -23,7 +23,7 @@ public class FindLoopTest {
     @Test
     public void whenArrayHasLengthMinus1() {
         FindLoop find = new FindLoop();
-        int[] input = new int[] {1, 2, 3, 4, 5, 7, 9, 10};
+        int[] input = new int[] {1, 2, 3, 4, 5, 8, 9, 10};
         int value = 6;
         int result = find.indexOf(input, value);
         int expect = -1;
