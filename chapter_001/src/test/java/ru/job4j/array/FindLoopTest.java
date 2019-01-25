@@ -24,7 +24,7 @@ public class FindLoopTest {
     public void whenArrayHasLengthMinus1() {
         FindLoop find = new FindLoop();
         int[] input = new int[] {1, 2, 3, 4, 5, 8, 9, 10};
-        int value = 6;
+        int value = 58;
         int result = find.indexOf(input, value);
         int expect = -1;
         assertThat(result, is(expect));
