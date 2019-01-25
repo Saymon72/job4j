@@ -5,6 +5,11 @@ package ru.job4j.array;
  * @since 0.1
  */
 public class Turn {
+    /**
+     * method back.
+     * @param array array.
+     * @return array.
+     */
     public int[] back(int[] array) {
         for (int i = 0; i < array.length / 2; i++) {
             int tmp = array[i];
