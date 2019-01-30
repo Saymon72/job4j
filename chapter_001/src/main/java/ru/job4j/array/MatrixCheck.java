@@ -14,15 +14,17 @@ public class MatrixCheck {
      * @return результат.3
      */
     public boolean mono(boolean[][] data) {
-        boolean diagonal1 = true, diagonal2 = true;
-        for (int i = 0, j = data.length - 1; i < data.length - 1 && (diagonal2 || diagonal1); i++, j--) {
-            if (data[i][i] != data[i + 1][i + 1] && diagonal2) {
-                diagonal2 = false;
+        boolean result = true;
+        for (int i = 0, j = data.length - 1; i < data.length - 1; i++, j--) {
+            if (data[0][0] != data[i + 1][i + 1]) {
+                result = false;
+                break;
             }
-            if (data[j][j] != data[i + 1][j - 1] && diagonal1) {
-                diagonal1 = false;
+            if (data[0][j] != data[i + 1][j - 1]) {
+                result = false;
+                break;
             }
         }
-        return diagonal2 || diagonal1;
+        return result;
     }
 }
