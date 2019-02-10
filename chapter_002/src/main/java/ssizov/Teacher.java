@@ -4,7 +4,9 @@ package ssizov;
  */
 public class Teacher extends Profession {
 
-    public void teach() {
+    public Teacher(String name, String proff) {
+
+        super(name, proff);
 
     }
 }

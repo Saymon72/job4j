@@ -4,6 +4,9 @@ package ssizov;
  */
 public class Ingeneer extends Profession {
 
-    public void build (){
+    public Ingeneer(String name, String proff) {
+
+        super(name, proff);
+
     }
 }
