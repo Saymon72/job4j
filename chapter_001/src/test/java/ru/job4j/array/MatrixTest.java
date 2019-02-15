@@ -1,5 +1,9 @@
 package ru.job4j.array;
-
+/**
+ * @author Semyon Sizov (semen66613@gmail.com)
+ * @version $Id$
+ * @since 0.1
+ */
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
