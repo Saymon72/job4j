@@ -1,8 +1,9 @@
 package ru.ssizov.start;
 
-import ru.ssizov.models.*;
+import ru.ssizov.models.Item;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @version $Id$
@@ -73,10 +74,11 @@ public class Tracker {
      * Метод возвращает копию массива this.items без null элементов.
      */
     public Item[] findAll() {
-        Item[] result = new Item[this.position];
+        Item[] rst = new Item[this.position];
         for (int i = 0; i != this.position; i++) {
-            result[i] = this.items[i];
+            rst[i] = this.items[i];
         }
+        Item[] result = Arrays.copyOf(rst, this.position);
         return result;
     }
 
@@ -94,8 +96,7 @@ public class Tracker {
                 temp[count++] = item;
             }
         }
-        Item[] rst = new Item[count];
-        System.arraycopy(temp, 0, rst, 0, count);
+        Item[] rst = Arrays.copyOf(temp, count);
         return rst;
     }
 

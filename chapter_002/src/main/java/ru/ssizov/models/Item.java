@@ -1,6 +1,8 @@
 package ru.ssizov.models;
 
-
+/**
+ * Класс с полями, коструктором, и методами
+ */
 public class Item {
 
     private String name;
