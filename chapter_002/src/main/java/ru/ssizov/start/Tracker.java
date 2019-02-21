@@ -33,7 +33,6 @@ public class Tracker {
      */
     private String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());    //из библиотеки util
-        //return null;
     }
 
     /**
@@ -60,7 +59,7 @@ public class Tracker {
     public boolean delete(String id) {
         boolean check = false;
         for (int i = 0; i < this.position; i++) {
-            if (items[i].getId().equals(id)) {
+            if (this.items[i].getId().equals(id)) {
                 System.arraycopy(this.items, i + 1, this.items, i, this.items.length - 1 - i);
                 position--;
                 check = true;

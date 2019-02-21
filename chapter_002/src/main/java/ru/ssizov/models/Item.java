@@ -13,6 +13,10 @@ public class Item {
 
     private String id;
 
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public void setId(String id) {
         this.id = id;
