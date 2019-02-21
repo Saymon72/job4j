@@ -78,12 +78,11 @@ public class Tracker {
         for (int i = 0; i != this.position; i++) {
             rst[i] = this.items[i];
         }
-        Item[] result = Arrays.copyOf(rst, this.position);
-        return result;
+        return Arrays.copyOf(rst, this.position);
     }
 
     /**
-     * Метод получение списка по имени.
+     * Метод получения списка по имени.
      *
      * @param key ключ по которому будем искать.
      * @return массив со списком собранный по имени.
