@@ -3,7 +3,7 @@ package ru.ssizov.start;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.ssizov.models.Item;
+import ru.ssizov.models.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -14,15 +14,26 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    public String line = System.lineSeparator();
+    public String menu = new StringBuilder()
+            .append("ÌÅÍŞ." + line)
+            .append("0 - ÄÎÁÀÂÈÒÜ ÇÀßÂÊÓ." + line)
+            .append("1 - ÏÎÊÀÇÀÒÜ ÂÑÅ ÇÀßÂÊÈ." + line)
+            .append("2 - ÈÇÌÅÍÈÒÜ ÇÀßÂÊÓ." + line)
+            .append("3 - ÓÄÀËÈÒÜ ÇÀßÂÊÓ." + line)
+            .append("4 - ÍÀÉÒÈ ÇÀßÂÊÓ ÏÎ ID." + line)
+            .append("5 - ÍÀÉÒÈ ÇÀßÂÊÓ ÏÎ ÈÌÅÍÈ." + line)
+            .append("6 - ÂÛÕÎÄ ÈÇ ÏĞÎÃĞÀÌÌÛ." + line)
+            .toString();
 
     @Before
-    public void init() {
-        System.setOut(new PrintStream(out));
+    public void loadOutput() {
+        System.setOut(new PrintStream(this.out));
     }
 
     @After
     public void backOutput() {
-        System.setOut(new PrintStream(stdout));
+        System.setOut(new PrintStream(this.stdout));
 
     }
 
@@ -32,6 +43,50 @@ public class StartUITest {
         String[] action = {"0", "test name", "desc", "6"};
         new StartUI(new StubInput(action), tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
+    }
+
+    @Test
+     public void whenAddItemsThenPrintAllItems() {
+         Tracker tracker = new Tracker();
+         String[] action = {"0", "test item", "test1", "6"};
+         new StartUI(new StubInput(action), tracker).init();
+         String line = System.lineSeparator();
+         assertThat(
+                 this.out.toString(),
+                 is(
+                         new StringBuilder()
+                                 .append(menu)
+                                 .append("------------ Äîáàâëåíèå íîâîé çàÿâêè --------------" + line)
+                                 .append("------------ Íîâàÿ çàÿâêà ñ getId : " + tracker.findAll()[0].getId() + "-----------" + line)
+                         .append(menu)
+                                 .append("ÏĞÎÃĞÀÌÌÀ ÇÀÂÅĞØÅÍÀ" + line)
+                                 .toString()
+                 )
+         );
+     }
+
+   @Test
+    public void whenShowAllItemsThenPrintAllItems() {
+        Tracker tracker = new Tracker();
+        Item item1 = tracker.add(new Item("test name1", "desc1"));
+        Item item2 = tracker.add(new Item("test name2", "desc2"));
+        Item item3 = tracker.add(new Item("test name3", "desc3"));
+        String[] action = {"1", "6"};
+        new StartUI(new StubInput(action), tracker).init();
+        assertThat(
+                this.out.toString(),
+                is(
+                        new StringBuilder()
+                                .append(menu)
+                                .append("------------ Âûâîä âñåõ çàÿâîê --------------" + line)
+                                .append("Çàÿâêà ¹ : 1" + "\r" + "\n" + item1 + line)
+                                .append("Çàÿâêà ¹ : 2" + "\r" + "\n" + item2 + line)
+                                .append("Çàÿâêà ¹ : 3" + "\r" + "\n" + item3 + line)
+                                .append(menu)
+                                .append("ÏĞÎÃĞÀÌÌÀ ÇÀÂÅĞØÅÍÀ" + line)
+                                .toString()
+                )
+        );
     }
 
     @Test
@@ -65,14 +120,6 @@ public class StartUITest {
     public void whenUserFindNameItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
         String[] action = {"0", "test name", "desc", "5", "test name", "6",};
-        new StartUI(new StubInput(action), tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test name"));
-    }
-
-    @Test
-    public void WhenUserOutAllItems() {
-        Tracker tracker = new Tracker();
-        String[] action = {"0", "test name", "desc", "1", "6"};
         new StartUI(new StubInput(action), tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
     }

@@ -1,7 +1,8 @@
 package ru.ssizov.models;
 
+
 /**
- * РљР»Р°СЃСЃ СЃ РїРѕР»СЏРјРё, РєРѕСЃС‚СЂСѓРєС‚РѕСЂРѕРј, Рё РјРµС‚РѕРґР°РјРё
+ * Класс с полями, коструктором, и методами
  */
 public class Item {
 
@@ -42,5 +43,10 @@ public class Item {
 
     public String getId() {
         return this.id;
+    }
+
+    @Override
+    public String toString() {
+       return " Имя заявкм : " + name + "\r" + "\n" + " Описание заявки : " + description + "\r" + "\n" + " ID заявкм : " + id;
     }
 }
