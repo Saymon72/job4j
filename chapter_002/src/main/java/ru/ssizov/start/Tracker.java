@@ -82,6 +82,7 @@ public class Tracker {
 
     /**
      * Метод получения списка по имени.
+     *++++++++
      *
      * @param key ключ по которому будем искать.
      * @return массив со списком собранный по имени.
@@ -112,5 +113,4 @@ public class Tracker {
         }
         return result;
     }
-
 }
