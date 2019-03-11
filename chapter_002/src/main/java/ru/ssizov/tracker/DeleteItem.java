@@ -1,7 +1,7 @@
 package ru.ssizov.tracker;
 
-import ru.ssizov.models.Item;
-import ru.ssizov.start.*;
+import ru.ssizov.start.Input;
+import ru.ssizov.start.Tracker;
 
 public class DeleteItem implements UserAction {
 
@@ -17,19 +17,14 @@ public class DeleteItem implements UserAction {
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Удаление заявки --------------");
         String id = input.ask("Введите ID заявки ");
-        Item[] item = tracker.findAll();
-        boolean rst = false;
-        for (int i = 0; i < item.length; i++) {
-            if (item[i].getId().equals(id)) {
-                rst = true;
-                tracker.delete(id);
-                System.out.println("Заявка удалена");
-            }
-        }
-        if (!rst) {
+        if (tracker.delete(id)) {
+            //   tracker.delete(id);
+            System.out.println("Заявка удалена");
+        }else {
             System.out.println(" Заявка с таким ID не найдена");
         }
     }
+
 
     @Override
     public String info() {
