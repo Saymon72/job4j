@@ -2,6 +2,8 @@ package ru.ssizov.start;
 
 import ru.ssizov.tracker.*;
 
+import java.util.*;
+
 /**
  * @version $Id$
  * @since 0.1
@@ -10,33 +12,37 @@ public class StartUI {
 
     private final Input input;
 
-    private final Tracker tracker;
 
     /**
      * Конструтор инициализирующий поля.
      *
-     * @param input   ввод данных.
-     * @param tracker хранилище заявок.
+     * @param input ввод данных.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input) {
         this.input = input;
-        this.tracker = tracker;
     }
 
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        Tracker tracker = new Tracker();
+        MenuTracker menu = new MenuTracker(this.input, tracker);
+        List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range.add(i);
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("Выберите пункт Меню :")));
-        } while (!"y".equals(this.input.ask("Exit?(y/n): ")));
+            menu.select(input.ask("Выберите пункт Меню :", range));
+        } while (!"y" .equals(this.input.ask("Выйти из программы?(y/n): ")));
     }
+
     /**
      * Запуск программы.
      *
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        Input input = new ValidateInput();
+        new StartUI(input).init();
     }
 }
